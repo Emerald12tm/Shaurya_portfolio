@@ -1,4 +1,5 @@
 import { site } from "@/content";
+import Tooltip from "./Tooltip";
 import { GithubIcon, LinkedInIcon, MailIcon, ArrowDownIcon } from "./icons";
 
 const iconFor: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>> = {
@@ -47,16 +48,17 @@ export default function Hero() {
         {site.socials.map((social) => {
           const Icon = iconFor[social.label];
           return (
-            <a
-              key={social.label}
-              href={social.href}
-              target={social.href.startsWith("http") ? "_blank" : undefined}
-              rel="noopener noreferrer"
-              aria-label={social.label}
-              className="text-zinc-500 transition-colors hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50"
-            >
-              {Icon ? <Icon className="size-6" /> : social.label}
-            </a>
+            <Tooltip key={social.label} label={social.label}>
+              <a
+                href={social.href}
+                target={social.href.startsWith("http") ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                aria-label={social.label}
+                className="text-zinc-500 transition-colors hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50"
+              >
+                {Icon ? <Icon className="size-6" /> : social.label}
+              </a>
+            </Tooltip>
           );
         })}
       </div>

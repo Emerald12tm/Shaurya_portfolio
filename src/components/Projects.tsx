@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { projects } from "@/content";
+import RepoStats from "./RepoStats";
 import { ExternalLinkIcon, GithubIcon } from "./icons";
 
 export default function Projects() {
@@ -72,6 +73,8 @@ export default function Projects() {
                   </a>
                 )}
               </div>
+
+              {project.repoUrl && <RepoStats repoUrl={project.repoUrl} />}
             </div>
           </article>
         ))}
