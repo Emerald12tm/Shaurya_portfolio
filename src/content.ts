@@ -122,7 +122,7 @@ export type ExperienceItem = {
 
 export const experience: ExperienceItem[] = [
   {
-    role: "Founder & Team Lead",
+    role: "Co-founder & Team Lead",
     org: "FTC Team 26936 · AgileBlast Robotics",
     dates: "2024 — Present",
     bullets: [
@@ -133,11 +133,11 @@ export const experience: ExperienceItem[] = [
     awards: ["Dean's List Finalist", "Rookie Sensation Award"],
   },
   {
-    role: "Founder & Team Lead",
+    role: "Co-founder & Team Lead",
     org: "AgileBlast FIRST LEGO League",
     dates: "2020 — Present · 5 seasons",
     bullets: [
-      "Founded and led a competitive FLL team across five consecutive seasons",
+      "Helped start and have led a competitive FLL team across five consecutive seasons",
       "Mentor younger students in engineering design, iteration, and SPIKE Prime programming",
     ],
     awards: ["Champions Award", "Innovation Award", "Motivate Award", "Rising All-Star Award"],
