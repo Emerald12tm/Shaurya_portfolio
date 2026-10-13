@@ -1,43 +1,49 @@
 import { experience } from "@/content";
+import Honors from "./Honors";
+import SectionHeading from "./SectionHeading";
+import Spotlight from "./Spotlight";
 
 export default function Experience() {
   return (
-    <section
-      id="experience"
-      className="border-t border-black/[.08] dark:border-white/[.12]"
-    >
-      <div className="mx-auto max-w-5xl px-6 py-20 sm:px-8">
-        <h2 className="text-2xl font-semibold tracking-tight">Experience</h2>
+    <section id="experience" className="border-t border-line">
+      <div className="mx-auto max-w-6xl px-4 py-24 sm:px-8">
+        <SectionHeading index="03" label="Experience" title="Leadership, robotics, and shipping.">
+          <p>Six years of building with teams, from LEGO League to FTC to software real students use.</p>
+        </SectionHeading>
 
-        <div className="mt-10 space-y-8">
+        <div className="mt-12 grid gap-5 lg:grid-cols-3">
           {experience.map((item) => (
-            <div
-              key={`${item.role}-${item.org}`}
-              className="rounded-2xl border border-black/[.08] p-6 dark:border-white/[.12]"
-            >
-              <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                <h3 className="font-semibold">
-                  {item.role} — {item.org}
-                </h3>
-                <span className="text-sm text-zinc-500 dark:text-zinc-400">
-                  {item.dates}
-                </span>
-              </div>
+            <Spotlight key={`${item.role}-${item.org}`} as="article" className="reveal flex flex-col p-6 sm:p-7">
+              <p className="font-mono text-[11px] tracking-wider text-faint uppercase">{item.dates}</p>
+              <h3 className="mt-3 text-lg font-semibold tracking-tight">{item.org}</h3>
+              <p className="text-sm text-accent">{item.role}</p>
 
-              <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-6 text-zinc-600 dark:text-zinc-400">
+              <ul className="mt-5 space-y-2.5 text-sm leading-6 text-muted">
                 {item.bullets.map((bullet) => (
-                  <li key={bullet}>{bullet}</li>
+                  <li key={bullet} className="flex gap-3">
+                    <span className="mt-2.5 h-px w-3 shrink-0 bg-line-strong" aria-hidden="true" />
+                    {bullet}
+                  </li>
                 ))}
               </ul>
 
-              {item.award && (
-                <p className="mt-3 inline-flex rounded-full bg-black/[.04] px-3 py-1 text-xs font-medium text-zinc-600 dark:bg-white/[.08] dark:text-zinc-400">
-                  🏆 {item.award}
-                </p>
+              {item.awards && (
+                <ul className="mt-auto flex flex-wrap gap-1.5 pt-6" aria-label="Awards">
+                  {item.awards.map((award) => (
+                    <li
+                      key={award}
+                      className="rounded-md bg-accent-2/10 px-2 py-1 font-mono text-[11px] text-accent-2 ring-1 ring-accent-2/25"
+                    >
+                      {award}
+                    </li>
+                  ))}
+                </ul>
               )}
-            </div>
+            </Spotlight>
           ))}
         </div>
+
+        <Honors />
       </div>
     </section>
   );

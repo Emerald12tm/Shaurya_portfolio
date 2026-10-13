@@ -1,27 +1,21 @@
 import { skills } from "@/content";
+import SectionHeading from "./SectionHeading";
 
 export default function Skills() {
   return (
-    <section id="skills" className="border-t border-black/[.08] dark:border-white/[.12]">
-      <div className="mx-auto max-w-5xl px-6 py-20 sm:px-8">
-        <h2 className="text-2xl font-semibold tracking-tight">Skills & Technologies</h2>
+    <section id="skills" className="border-t border-line">
+      <div className="mx-auto max-w-6xl px-4 py-24 sm:px-8">
+        <SectionHeading index="05" label="Toolkit" title="What I build with." />
 
-        <div className="mt-10 grid gap-8 sm:grid-cols-3">
+        <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
           {skills.map((group) => (
-            <div key={group.category}>
-              <h3 className="text-sm font-semibold text-zinc-500 dark:text-zinc-400">
-                {group.category}
-              </h3>
-              <div className="mt-3 flex flex-wrap gap-2">
+            <div key={group.category} className="reveal bg-background p-6">
+              <h3 className="font-mono text-[11px] tracking-[0.2em] text-accent uppercase">{group.category}</h3>
+              <ul className="mt-4 space-y-2 text-sm text-foreground/85">
                 {group.items.map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full border border-black/[.08] px-3 py-1.5 text-sm dark:border-white/[.12]"
-                  >
-                    {item}
-                  </span>
+                  <li key={item}>{item}</li>
                 ))}
-              </div>
+              </ul>
             </div>
           ))}
         </div>

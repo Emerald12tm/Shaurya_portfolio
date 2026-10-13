@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { site } from "@/content";
 import "./globals.css";
@@ -16,6 +16,16 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: `${site.name} — ${site.role}`,
   description: site.tagline,
+  openGraph: {
+    title: site.name,
+    description: site.tagline,
+    type: "website",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#05070b",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({
@@ -24,11 +34,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+      <body className="flex min-h-full flex-col">
+        <div className="backdrop" aria-hidden="true" />
+        {children}
+      </body>
     </html>
   );
 }

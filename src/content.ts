@@ -1,167 +1,254 @@
 // ─────────────────────────────────────────────────────────────────────────
 // EDIT THIS FILE TO UPDATE YOUR PORTFOLIO.
-// Every section of the site pulls from the objects below, so changing
-// text/links/projects here is all you need to do. While `npm run dev` is
-// running, saves to this file hot-reload the site instantly in your
-// browser. Once you push to GitHub, Vercel redeploys automatically.
+// Every section of the site pulls from the objects below. Projects are the
+// exception: they are ranked automatically from your GitHub every hour (see
+// `github` and `projectNotes`). While `npm run dev` is running, saves here
+// hot-reload instantly. Push to GitHub and Vercel redeploys automatically.
+//
+// Rule of thumb: only put numbers here that you can back up. When you have
+// real figures (users, accuracy, cycle time), add them — they're what make
+// a project read as impressive.
 // ─────────────────────────────────────────────────────────────────────────
 
 export const site = {
   name: "Shaurya Gupta",
-  role: "High School Junior & Aspiring Software Engineer",
+  shortName: "Shaurya",
+  role: "Math + CS · Robotics · Builder",
+  headline: ["I build robots,", "software, and the", "math underneath."],
   tagline:
-    "Hi, I'm Shaurya. High school junior building full-stack web apps, leading a robotics team, and exploring AI.",
-  location: "Class of 2028",
-  availability: "Seeking summer internships & research opportunities",
+    "High school junior in Plainfield, IL. I lead programming for FTC Team 26936, ship SafeSpace — a wellness app for students — and I'm pushing deeper into algorithms, simulation, and research.",
+  location: "Plainfield, IL",
+  classOf: "Class of 2028",
+  availability: "Open to summer 2027 research mentorship",
   email: "emerald12tm@gmail.com",
-  resumeUrl: "/resume.pdf",
+  // Set to "/resume.pdf" once public/resume.pdf is your real resume.
+  // (The current file is a placeholder, so the button stays hidden.)
+  resumeUrl: undefined as string | undefined,
   socials: [
     { label: "GitHub", href: "https://github.com/Emerald12tm" },
-    { label: "LinkedIn", href: "https://linkedin.com/in/yourusername" },
+    // { label: "LinkedIn", href: "https://linkedin.com/in/your-handle" },
     { label: "Email", href: "mailto:emerald12tm@gmail.com" },
   ],
 };
 
-export type Project = {
+// Headline numbers in the hero. Facts only.
+export const stats = [
+  { value: "4.0", label: "Unweighted GPA" },
+  { value: "5", label: "FLL seasons led" },
+  { value: "Dean's List", label: "FTC Finalist" },
+];
+
+// ── Projects ─────────────────────────────────────────────────────────────
+// The Projects section ranks every original (non-fork) repo on your GitHub by
+// commit history, recent activity, amount of code, and reach (stars, forks,
+// a live site). The ranking refreshes every hour, so whatever you're pushing
+// to most lately rises to the top on its own.
+
+export const github = {
+  user: "Emerald12tm",
+  // Repos that should never be featured. Names are case-insensitive.
+  hidden: [
+    "Shaurya_portfolio", // this site
+    "personal_website", // replaced by this site
+    "FTC2025", // superseded by FTC-Decode-2025-2026
+    "my-first-repo",
+    "Copy_Website_Project",
+  ],
+  // How many repos get the large featured card treatment.
+  featured: 2,
+  // Max repos shown in total (featured + compact list).
+  limit: 6,
+};
+
+export type ProjectNote = {
   title: string;
-  description: string;
-  tags: string[];
+  kicker: string;
+  summary: string;
+  highlights: string[];
+  stack: string[];
   liveUrl?: string;
-  repoUrl?: string;
   image?: string; // path in /public, e.g. "/projects/my-app.png"
 };
 
-// TODO: swap these placeholders for your real projects — none were provided yet.
-export const projects: Project[] = [
-  {
-    title: "Project One",
-    description:
-      "A 2-3 sentence overview of the problem this project solves and what you learned building it. Focus on the 'why', not just the 'what'.",
-    tags: ["React", "Node.js", "Firebase"],
-    liveUrl: "https://your-demo-link.vercel.app",
-    repoUrl: "https://github.com/Emerald12tm/project-one",
-    image: undefined,
+// Optional hand-written story for a repo, keyed by repo name (lowercase).
+// Repos without a note still appear, using their GitHub description.
+export const projectNotes: Record<string, ProjectNote> = {
+  "ftc-decode-2025-2026": {
+    title: "AgileBlast Robot Code",
+    kicker: "FTC Team 26936 · DECODE 2025–26",
+    summary:
+      "Competition software for our FIRST Tech Challenge robot: autonomous path following, vision, and a flywheel launcher, documented so every teammate can learn it and change it.",
+    highlights: [
+      "Autonomous routines on Pedro Pathing, localized with goBILDA Pinpoint odometry",
+      "Limelight 3A vision and IMU integrated into TeleOp and test OpModes",
+      "Flywheel launcher with servo-driven hood and gate, fed by an intake and transfer system",
+      "17-section TeamCode Guide covering design rationale, debugging, and the bugs we found",
+    ],
+    stack: ["Java", "Android Studio", "Pedro Pathing", "Limelight 3A"],
   },
-  {
-    title: "Project Two",
-    description:
-      "A short description of a data-driven or algorithmic project — e.g. a Python script that analyzes local data, or something you built for USACO/competitive programming.",
-    tags: ["Python", "Pandas"],
-    liveUrl: undefined,
-    repoUrl: "https://github.com/Emerald12tm/project-two",
-    image: undefined,
+  safespace: {
+    title: "SafeSpace",
+    kicker: "Student wellness web app · Live",
+    summary:
+      "A calm check-in space for students to pause, breathe, journal, and reset: a few quiet minutes shaped around how they're feeling.",
+    highlights: [
+      "Mood check-in that steers students toward breathing, journaling, or reset activities",
+      "Accounts, private journal history, and password reset on Supabase auth",
+      "Presented at Google NYC through All Star Code",
+    ],
+    stack: ["JavaScript", "Supabase", "Vercel", "HTML/CSS"],
+    liveUrl: "https://safespace-ashen.vercel.app",
+    image: "/projects/safespace.png",
   },
-  {
-    title: "Project Three",
-    description:
-      "A hackathon or collaborative team project. Mention the team, the time constraint, and the award or outcome if there was one.",
-    tags: ["JavaScript", "Tailwind CSS", "Hackathon"],
-    liveUrl: "https://your-demo-link.vercel.app",
-    repoUrl: "https://github.com/Emerald12tm/project-three",
-    image: undefined,
+  adopt_a_dog: {
+    title: "Adopt a Dog",
+    kicker: "API mashup",
+    summary:
+      "Pairs two public APIs (Dog CEO and RandomUser) into a browsable grid of adoptable-dog profiles with a detail view.",
+    highlights: [],
+    stack: ["JavaScript", "REST APIs"],
   },
-];
+};
+
+// ── Experience ───────────────────────────────────────────────────────────
 
 export type ExperienceItem = {
   role: string;
   org: string;
   dates: string;
   bullets: string[];
-  award?: string;
+  awards?: string[];
 };
 
 export const experience: ExperienceItem[] = [
   {
     role: "Founder & Team Lead",
-    org: "FTC Team 26936, AgileBlast Robotics",
-    dates: "2024 – Present",
+    org: "FTC Team 26936 · AgileBlast Robotics",
+    dates: "2024 — Present",
     bullets: [
-      "Founded and directed a First Tech Challenge robotics team, overseeing programming, mechanical design, and systems integration",
-      "Diagnose and resolve hardware/software issues using REV Hardware Client and Android Studio",
-      "Coach team members in Java programming and core robotics engineering principles",
+      "Lead programming, mechanical design, and systems integration for the team's competition robot",
+      "Built the autonomous and TeleOp software stack in Java: path following, odometry, and vision",
+      "Teach teammates Java and robot debugging with REV Hardware Client and Android Studio",
     ],
-    award: "Rookie Sensation Award",
+    awards: ["Dean's List Finalist", "Rookie Sensation Award"],
   },
   {
     role: "Founder & Team Lead",
-    org: "AgileBlast FLL Team",
-    dates: "2020 – Present · 5 Seasons",
+    org: "AgileBlast FIRST LEGO League",
+    dates: "2020 — Present · 5 seasons",
     bullets: [
-      "Founded and have led a FIRST Lego League competitive team across five consecutive seasons",
-      "Mentor students in engineering design, iterative problem-solving, and SPIKE Prime programming",
+      "Founded and led a competitive FLL team across five consecutive seasons",
+      "Mentor younger students in engineering design, iteration, and SPIKE Prime programming",
     ],
-    award: "Champions Award, Innovation Award, Motivate Award, Rising All-Star Award",
+    awards: ["Champions Award", "Innovation Award", "Motivate Award", "Rising All-Star Award"],
   },
   {
-    role: "Technology Support",
-    org: "Independent",
-    dates: "Ongoing",
+    role: "Creator & Developer",
+    org: "SafeSpace",
+    dates: "2026 — Present",
     bullets: [
-      "Troubleshoot devices, software, and applications for teachers and family members",
-      "Translate complex technical issues into clear, accessible guidance for non-technical users",
-      "Perform Windows installations, system imaging, and hardware component replacement",
+      "Designed and shipped a full-stack wellness app for students on Supabase and Vercel",
+      "Presented the project to engineers and peers at Google NYC through All Star Code",
     ],
   },
 ];
 
-export const skills = [
+export const honors = [
+  { title: "FTC Dean's List Finalist", detail: "FIRST Tech Challenge" },
+  { title: "Rookie Sensation Award", detail: "FTC Team 26936 · first season" },
+  { title: "Champions Award", detail: "FIRST LEGO League" },
+  { title: "Innovation, Motivate & Rising All-Star", detail: "FIRST LEGO League" },
+  { title: "PCEP Certified", detail: "Python Institute" },
+];
+
+// ── Trajectory: what's next ──────────────────────────────────────────────
+// Status values: "active" (working on it now), "next" (planned), "done".
+
+export type Milestone = {
+  title: string;
+  status: "active" | "next" | "done";
+  when: string;
+  detail: string;
+};
+
+export const trajectory: Milestone[] = [
   {
-    category: "Programming Languages",
-    items: ["Java", "Python", "JavaScript", "Lua"],
+    title: "Fireflyers — multi-drone wildfire simulation",
+    status: "active",
+    when: "ISEF cycle · 2027",
+    detail:
+      "A simulation study comparing coordination strategies (nearest fire edge, assigned zones, task bidding) for drones tracking a moving fire front, with spread grounded in NASA FIRMS satellite data.",
   },
   {
-    category: "Tools & Platforms",
-    items: [
-      "Android Studio",
-      "VS Code",
-      "REV Hardware Client",
-      "OnShape CAD",
-      "LEGO SPIKE Prime",
-      "Bambu Lab 3D Printing",
-      "Microsoft Office Suite",
-      "Google Workspace",
-    ],
+    title: "USACO",
+    status: "active",
+    when: "Silver this season → Gold by Dec 2027",
+    detail:
+      "Training competitive algorithms and data structures, building on the Java I write every week for FTC.",
   },
   {
-    category: "Hardware",
-    items: [
-      "Windows Installation & System Imaging",
-      "PC Hardware Repair & Component Replacement",
-      "Hardware Diagnostics & Troubleshooting",
-    ],
+    title: "Math beyond single-variable calculus",
+    status: "next",
+    when: "Summer 2027 →",
+    detail: "Calculus, then multivariable calculus or linear algebra, the foundations for ML and robotics.",
   },
   {
-    category: "Certifications",
-    items: [
-      "Google AI Essentials Certification",
-      "Python Certified Entry-Level Programmer (PCEP)",
-    ],
+    title: "SafeSpace in schools",
+    status: "next",
+    when: "2026 — 27",
+    detail:
+      "Bringing in school counselors to design a crisis-escalation process, documenting how minors' data is protected, and entering the Congressional App Challenge (IL-14).",
+  },
+  {
+    title: "Research mentorship",
+    status: "next",
+    when: "Summer 2027",
+    detail:
+      "Looking for a lab in robotics, autonomy, or digital mental health where I can contribute to real research.",
   },
 ];
+
+// ── Skills ───────────────────────────────────────────────────────────────
+
+export const skills = [
+  { category: "Languages", items: ["Java", "Python", "JavaScript", "Lua"] },
+  {
+    category: "Robotics",
+    items: ["Pedro Pathing", "Odometry", "Limelight Vision", "REV Hardware Client", "SPIKE Prime"],
+  },
+  {
+    category: "Web & Tools",
+    items: ["Supabase", "Vercel", "Android Studio", "VS Code", "Git"],
+  },
+  { category: "Making", items: ["OnShape CAD", "Bambu Lab 3D Printing"] },
+];
+
+// ── Education ────────────────────────────────────────────────────────────
 
 export const education = {
   school: "Plainfield North High School",
   location: "Plainfield, IL",
-  graduation: "Expected May 2028",
-  weightedGpa: "5.88 / 5.0",
-  unweightedGpa: "5.0 / 5.0",
-  honor: "National Junior Honor Society — President",
+  graduation: "Class of 2028",
+  unweightedGpa: "4.0",
+  weightedGpa: "4.8",
+  coursework: [
+    "AP Computer Science Principles",
+    "AP Statistics",
+    "AP Physics 1",
+    "AP U.S. History",
+    "AP English Language",
+    "AP Spanish Language",
+    "Honors Chemistry",
+    "Honors Biology",
+    "Precalculus I–II (dual credit)",
+  ],
 };
 
 export const activities = [
-  "National Junior Honor Society — President",
-  "Math Team — Class Leader",
-  "DECA",
-  "Science Olympiad",
-  "Feed My Starving Children — Volunteer",
-  "UIUC FLL Robotics — Volunteer",
-  "Religious Service — Volunteer",
-];
-
-export const coreCompetencies = [
-  "Excellent written & verbal communication",
-  "Customer-focused mindset",
-  "Calm under pressure",
-  "High confidentiality & responsibility",
-  "Rapid learner",
+  { name: "Varsity Tennis", detail: "Player, 3 years · Girls' Varsity Manager, 2 years" },
+  { name: "Math Team", detail: "Class Leader" },
+  { name: "Science Olympiad", detail: "Competitor" },
+  { name: "DECA", detail: "Member" },
+  { name: "UIUC FLL Robotics", detail: "Volunteer" },
+  { name: "Feed My Starving Children", detail: "Volunteer" },
 ];
