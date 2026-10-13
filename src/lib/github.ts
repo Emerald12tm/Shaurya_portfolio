@@ -1,6 +1,7 @@
 import "server-only";
 import { github, projectNotes, type ProjectNote } from "@/content";
 import { commitCountFromLink, rankRepos, type RankedRepo, type RepoSignals } from "./ranking";
+import { clampText, safeHttpUrl, safeUrlOnHost } from "./safeUrl";
 
 // How often (seconds) the ranking is rebuilt from live GitHub data.
 export const GITHUB_REVALIDATE = 3600;
@@ -42,8 +43,12 @@ function gh(path: string) {
   });
 }
 
+// Repo names come from the API response; encode them before building request paths.
+const repoPath = (repo: string) =>
+  `/repos/${encodeURIComponent(github.user)}/${encodeURIComponent(repo)}`;
+
 async function commitCount(repo: string): Promise<number> {
-  const res = await gh(`/repos/${github.user}/${repo}/commits?per_page=1`);
+  const res = await gh(`${repoPath(repo)}/commits?per_page=1`);
   if (res.status === 409) return 0; // empty repository
   if (!res.ok) throw new Error(`commits ${repo}: ${res.status}`);
   const page = (await res.json()) as unknown[];
@@ -51,7 +56,7 @@ async function commitCount(repo: string): Promise<number> {
 }
 
 async function languages(repo: string): Promise<Record<string, number>> {
-  const res = await gh(`/repos/${github.user}/${repo}/languages`);
+  const res = await gh(`${repoPath(repo)}/languages`);
   if (!res.ok) throw new Error(`languages ${repo}: ${res.status}`);
   return res.json();
 }
@@ -67,16 +72,24 @@ async function fetchLive(): Promise<Project[]> {
 
   const hidden = new Set(github.hidden.map((n) => n.toLowerCase()));
   // Only spend API calls on repos that could actually be ranked.
-  const candidates = repos.filter((r) => !r.fork && !r.archived && !hidden.has(r.name.toLowerCase()));
+  // Every field below ends up in the page, so treat the API response as untrusted:
+  // links must be http(s) (repo links must point at github.com) and text is length-capped.
+  const candidates = repos.filter(
+    (r) =>
+      !r.fork &&
+      !r.archived &&
+      !hidden.has(r.name.toLowerCase()) &&
+      safeUrlOnHost(r.html_url, ["github.com"]) !== null,
+  );
 
   const signals: RepoSignals[] = await Promise.all(
     candidates.map(async (r) => {
       const [commits, langs] = await Promise.all([commitCount(r.name), languages(r.name)]);
       return {
         name: r.name,
-        url: r.html_url,
-        description: r.description,
-        homepage: r.homepage || null,
+        url: safeUrlOnHost(r.html_url, ["github.com"])!,
+        description: clampText(r.description),
+        homepage: safeHttpUrl(r.homepage),
         language: r.language,
         languages: langs,
         stars: r.stargazers_count,
