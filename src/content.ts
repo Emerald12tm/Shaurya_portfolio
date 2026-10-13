@@ -16,10 +16,10 @@ export const site = {
   role: "Math + CS · Robotics · Builder",
   headline: ["I build robots,", "software, and the", "math underneath."],
   tagline:
-    "High school junior in Plainfield, IL. I lead programming for FTC Team 26936, ship SafeSpace — a wellness app for students — and I'm pushing deeper into algorithms, simulation, and research.",
+    "High school junior in Plainfield, IL. I lead programming for FTC Team 26936, ship SafeSpace — a wellness app for students — and I'm pushing deeper into algorithms, quantum machine learning, and research.",
   location: "Plainfield, IL",
   classOf: "Class of 2028",
-  availability: "Open to summer 2027 research mentorship",
+  availability: "Open to research mentorship · weekends + summer 2027",
   email: "emerald12tm@gmail.com",
   // Set to "/resume.pdf" once public/resume.pdf is your real resume.
   // (The current file is a placeholder, so the button stays hidden.)
@@ -158,6 +158,7 @@ export const honors = [
   { title: "Rookie Sensation Award", detail: "FTC Team 26936 · first season" },
   { title: "Champions Award", detail: "FIRST LEGO League" },
   { title: "Innovation, Motivate & Rising All-Star", detail: "FIRST LEGO League" },
+  { title: "1st Place, Conference", detail: "Math Team · State qualifier" },
   { title: "PCEP Certified", detail: "Python Institute" },
 ];
 
@@ -173,11 +174,11 @@ export type Milestone = {
 
 export const trajectory: Milestone[] = [
   {
-    title: "Fireflyers — multi-drone wildfire simulation",
+    title: "Quantum ML — a quantum layer inside a classical neural network",
     status: "active",
     when: "ISEF cycle · 2027",
     detail:
-      "A simulation study comparing coordination strategies (nearest fire edge, assigned zones, task bidding) for drones tracking a moving fire front, with spread grounded in NASA FIRMS satellite data.",
+      "Using PennyLane to turn a 4-qubit circuit into a PyTorch layer and swap it into an ordinary network: features enter as rotations, pass through trainable rotations and a ring of CNOT gates that entangle the qubits, then are measured for the next layer. To test whether entanglement actually helps, I'll compare it against a fully classical network and a version with the entangling gates removed, first on XOR, then on a real dataset.",
   },
   {
     title: "USACO",
@@ -202,9 +203,9 @@ export const trajectory: Milestone[] = [
   {
     title: "Research mentorship",
     status: "next",
-    when: "Summer 2027",
+    when: "Weekends now · Summer 2027",
     detail:
-      "Looking for a lab in robotics, autonomy, or digital mental health where I can contribute to real research.",
+      "Looking for a lab in quantum computing, machine learning, robotics, or digital mental health where I can contribute to real research. Available weekends now and through summer 2027.",
   },
 ];
 
@@ -246,7 +247,7 @@ export const education = {
 
 export const activities = [
   { name: "Varsity Tennis", detail: "Player, 3 years · Girls' Varsity Manager, 2 years" },
-  { name: "Math Team", detail: "Class Leader" },
+  { name: "Math Team", detail: "Sophomore Chapter Leader · led team to State · 1st at Conference" },
   { name: "Science Olympiad", detail: "Competitor" },
   { name: "DECA", detail: "Member" },
   { name: "UIUC FLL Robotics", detail: "Volunteer" },
