@@ -17,19 +17,34 @@ export const site = {
   headline: ["I build robots,", "software, and the", "math underneath."],
   tagline:
     "High school junior in Plainfield, IL. I lead programming for FTC Team 26936, ship SafeSpace — a wellness app for students — and I'm pushing deeper into algorithms, quantum machine learning, and research.",
+  url: "https://shaurya-portfolio-seven.vercel.app",
   location: "Plainfield, IL",
   classOf: "Class of 2028",
   availability: "Open to research mentorship · weekends + summer 2027",
   email: "emerald12tm@gmail.com",
-  // Set to "/resume.pdf" once public/resume.pdf is your real resume.
-  // (The current file is a placeholder, so the button stays hidden.)
+  // Add your resume as public/resume.pdf, then set this to "/resume.pdf"
+  // to show the Resume button.
   resumeUrl: undefined as string | undefined,
+  // Optional. Add like "+1 630 555 0123" to show a tap-to-call link in Contact.
+  // Note: this site is public, so only add a number you're OK sharing.
+  phone: undefined as string | undefined,
   socials: [
     { label: "GitHub", href: "https://github.com/Emerald12tm" },
     // { label: "LinkedIn", href: "https://linkedin.com/in/your-handle" },
     { label: "Email", href: "mailto:emerald12tm@gmail.com" },
   ],
 };
+
+// Section links used by the header, footer, and 404 page.
+// Each href must match a section id on the home page.
+export const navLinks = [
+  { href: "/#projects", label: "Projects", index: "01" },
+  { href: "/#trajectory", label: "Trajectory", index: "02" },
+  { href: "/#experience", label: "Experience", index: "03" },
+  { href: "/#education", label: "Education", index: "04" },
+  { href: "/#skills", label: "Toolkit", index: "05" },
+  { href: "/#contact", label: "Contact", index: "06" },
+];
 
 // Headline numbers in the hero. Facts only.
 export const stats = [

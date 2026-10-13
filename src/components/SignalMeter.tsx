@@ -35,6 +35,7 @@ export default function SignalMeter({
         ))}
       </div>
       <Tooltip
+        align="end"
         label={PARTS.map((p) => `${p.label} ${breakdown[p.key].toFixed(0)}`).join(" · ")}
       >
         <span tabIndex={0} className="cursor-help font-mono text-xs text-muted tabular-nums">

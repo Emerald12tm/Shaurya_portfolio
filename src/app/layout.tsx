@@ -13,13 +13,30 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const description =
+  "Shaurya Gupta: high school junior building robot software for FTC Team 26936, SafeSpace (a student wellness app), and a quantum machine learning research project. Projects ranked live from GitHub.";
+
 export const metadata: Metadata = {
-  title: `${site.name} — ${site.role}`,
-  description: site.tagline,
+  metadataBase: new URL(site.url),
+  title: {
+    default: `${site.name} | Math + CS, Robotics & Software`,
+    template: `%s | ${site.name}`,
+  },
+  description,
+  authors: [{ name: site.name, url: site.url }],
+  alternates: { canonical: "/" },
   openGraph: {
-    title: site.name,
-    description: site.tagline,
+    title: `${site.name} | Math + CS, Robotics & Software`,
+    description,
+    url: "/",
+    siteName: site.name,
     type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} | Math + CS, Robotics & Software`,
+    description,
   },
 };
 

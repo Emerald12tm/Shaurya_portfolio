@@ -6,6 +6,7 @@ import Experience from "@/components/Experience";
 import Education from "@/components/Education";
 import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 import { getProjectFeed } from "@/lib/github";
 
 // Re-rank projects from GitHub at most once an hour (ISR). Keep in sync with GITHUB_REVALIDATE.
@@ -17,7 +18,7 @@ export default async function Home() {
   return (
     <>
       <Header />
-      <main className="flex-1">
+      <main id="main" className="flex-1">
         <Hero feed={feed} />
         <Projects feed={feed} />
         <Trajectory />
@@ -26,6 +27,7 @@ export default async function Home() {
         <Skills />
         <Contact />
       </main>
+      <Footer />
     </>
   );
 }

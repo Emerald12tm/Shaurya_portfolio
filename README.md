@@ -44,9 +44,15 @@ saved snapshot instead of breaking.
 
 ### Adding your resume
 
-Replace [`public/resume.pdf`](public/resume.pdf) (currently a placeholder)
-with your real resume, keeping the same filename — the "Download Resume"
-buttons already link to `/resume.pdf`.
+1. Save your resume as `public/resume.pdf`.
+2. In `src/content.ts`, set `resumeUrl: "/resume.pdf"`. The Resume button
+   appears in the hero once this is set.
+
+### Adding a phone number
+
+Set `phone` in `src/content.ts` (e.g. `"+1 630 555 0123"`) to show a
+tap-to-call link in the Contact section. The site is public, so only add a
+number you're comfortable sharing.
 
 ## Running locally
 
