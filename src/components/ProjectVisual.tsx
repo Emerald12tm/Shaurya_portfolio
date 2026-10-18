@@ -1,4 +1,6 @@
 import Image from "next/image";
+import type { ProjectNote } from "@/content";
+import ProjectVideo from "./ProjectVideo";
 
 export const LANGUAGE_COLORS: Record<string, string> = {
   Java: "#e0a050",
@@ -49,14 +51,24 @@ export default function ProjectVisual({
   title,
   language,
   image,
+  video,
   priority = false,
 }: {
   name: string;
   title: string;
   language: string | null;
   image?: string;
+  video?: ProjectNote["video"];
   priority?: boolean;
 }) {
+  if (video) {
+    return (
+      <div className="relative aspect-video overflow-hidden bg-[#070a10]">
+        <ProjectVideo src={video.src} poster={video.poster} label={video.label} />
+      </div>
+    );
+  }
+
   if (image) {
     return (
       <div className="relative aspect-video overflow-hidden">

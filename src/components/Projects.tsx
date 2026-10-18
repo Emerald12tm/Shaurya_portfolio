@@ -99,6 +99,7 @@ function FeaturedCard({
           title={title}
           language={project.language}
           image={note?.image}
+          video={note?.video}
           priority={index === 0}
         />
         <span className="absolute top-3 right-3 rounded-full bg-background/70 px-2.5 py-1 font-mono text-xs text-accent ring-1 ring-accent/30 backdrop-blur">

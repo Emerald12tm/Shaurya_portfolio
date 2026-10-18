@@ -83,6 +83,9 @@ export type ProjectNote = {
   stack: string[];
   liveUrl?: string;
   image?: string; // path in /public, e.g. "/projects/my-app.png"
+  // Optional demo video; shown instead of `image`. Keep files small (720p, a few MB).
+  // `label` describes the video for screen readers.
+  video?: { src: string; poster: string; label: string };
 };
 
 // Optional hand-written story for a repo, keyed by repo name (lowercase).
@@ -114,6 +117,12 @@ export const projectNotes: Record<string, ProjectNote> = {
     stack: ["JavaScript", "Supabase", "Vercel", "HTML/CSS"],
     liveUrl: "https://safespace-ashen.vercel.app",
     image: "/projects/safespace.png",
+    video: {
+      src: "/projects/safespace-demo.mp4",
+      poster: "/projects/safespace-demo-poster.jpg",
+      label:
+        "SafeSpace promo video: animated text and app screens showing the mood check-in, a guided breathing exercise, and the SafeSpace home page.",
+    },
   },
   adopt_a_dog: {
     title: "Adopt a Dog",
